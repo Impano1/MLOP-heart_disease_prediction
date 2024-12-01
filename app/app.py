@@ -6,7 +6,7 @@ from src.model import HeartDiseaseModel
 
 app = Flask(__name__)
 
-# Load the model and scaler
+
 model = HeartDiseaseModel()
 model.load_model('models/heart_disease_model.pkl', 'models/scaler.pkl')
 
@@ -23,7 +23,7 @@ def predict():
 
 @app.route('/retrain', methods=['POST'])
 def retrain():
-    # Load new data
+    
     new_data = load_data('data/new_data.csv')
     X, y = model.preprocess_data(new_data)
     model.train(X, y)
