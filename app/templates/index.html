@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+        <form id="prediction-form">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="Age" required>
+            <label for="sex">Sex:</label>
+            <input type="number" id="sex" name="Sex" required>
+            <label for="chestPainType">Chest Pain Type:</label>
+            <input type="number" id="chestPainType" name="ChestPainType" required>
+            <label for="restingBP">Resting BP:</label>
+            <input type="number" id="restingBP" name="RestingBP" required>
+            <label for="cholesterol">Cholesterol:</label>
+            <input type="number" id="cholesterol" name="Cholesterol" required>
+            <label for="fastingBS">Fasting BS:</label>
+            <input type="number" id="fastingBS" name="FastingBS" required>
+            <label for="restingECG">Resting ECG:</label>
+            <input type="number" id="restingECG" name="RestingECG" required>
+            <label for="maxHR">Max HR:</label>
+            <input type="number" id="maxHR" name="MaxHR" required>
+            <label for="exerciseAngina">Exercise Angina:</label>
+            <input type="number" id="exerciseAngina" name="ExerciseAngina" required>
+            <label for="oldpeak">Oldpeak:</label>
+            <input type="number" id="oldpeak" name="Oldpeak" required>
+            <button type="submit">Predict</button>
+        </form>
+        <div id="prediction-result"></div>
+        <button id="retrain-button">Retrain Model</button>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
