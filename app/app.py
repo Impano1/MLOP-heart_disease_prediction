@@ -1,14 +1,18 @@
+import sys
+import os
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
-import joblib
-from src.preprocessing import load_data
-from src.model import HeartDiseaseModel
+
+# Add the src directory to the system path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+from model import HeartDiseaseModel
 
 app = Flask(__name__)
 
-
+# Load the model, scaler, and label encoders
 model = HeartDiseaseModel()
-model.load_model('models/heart_disease_model.pkl', 'models/scaler.pkl')
+model.load_model('models/heart_disease_model.pkl', 'models/scaler.pkl', 'models/label_encoders.pkl')
 
 @app.route('/')
 def index():
@@ -23,11 +27,10 @@ def predict():
 
 @app.route('/retrain', methods=['POST'])
 def retrain():
-    
-    new_data = load_data('data/new_data.csv')
+    new_data = pd.read_csv('data/new_data.csv')
     X, y = model.preprocess_data(new_data)
     model.train(X, y)
-    model.save_model('models/heart_disease_model.pkl', 'models/scaler.pkl')
+    model.save_model('models/heart_disease_model.pkl', 'models/scaler.pkl', 'models/label_encoders.pkl')
     return jsonify({'message': 'Model retrained successfully'})
 
 if __name__ == '__main__':
